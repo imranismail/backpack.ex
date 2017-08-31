@@ -1,6 +1,6 @@
 # Backpack
 
-**TODO: Add description**
+Conveniences and tools that I've used throughout my Elixir projects
 
 ## Installation
 
