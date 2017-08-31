@@ -12,7 +12,7 @@ by adding `backpack` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:backpack, "~> 0.1.0"}
+    {:backpack, "~> 0.2.0"}
   ]
 end
 ```
@@ -25,10 +25,14 @@ An ActiveSupport inspired way of handling dates and times
 ```elixir
 iex(1)> use Backpack, :moment
 Backpack.Moment
-iex(2)> 1 |> Moment.day() |> Moment.ago() |> Moment.from_unix!()
-#DateTime<2017-08-30 16:18:36Z>
-iex(3)> 2 |> Moment.days() |> Moment.from_now() |> Moment.from_unix!()
-#DateTime<2017-09-02 16:20:20Z>
+
+# It can work with integers and output to unix timestamp
+iex(2)> 1 |> Moment.day() |> Moment.ago()
+1504123763921954000
+iex(3)> 1 |> Moment.day() |> Moment.ago() |> Moment.from_unix!()
+#DateTime<2017-08-30 20:09:43.939502Z>
+
+# There are helper functions for working with DateTime/NaiveDateTime/Date
 iex(4)> DateTime.utc_now() |> Moment.days_from_now(3)
 #DateTime<2017-09-03 16:21:18.028638Z>
 iex(5)> NaiveDateTime.utc_now() |> Moment.weeks_from_now(3)
@@ -42,20 +46,26 @@ iex(8)> DateTime.utc_now() |> Moment.add(years: 1, days: -1)
 iex(9)> DateTime.utc_now() |> Moment.yesterday() |> Moment.next_year()
 #DateTime<2018-08-30 16:29:08.464739Z>
 iex(10)> Date.utc_today() |> Moment.end_of_month()
-iex(11)> Date.utc_today() |> Moment.end_of_month()
 ~D[2017-08-31]
-# Some operations may convert a Date to DateTime when necessary with Time starting from 00:00:00.00000
-iex(12)> Date.utc_today() |> Moment.end_of_day()
+
+# Some operations may convert a Date to NaiveDateTime when necessary with Time starting from 00:00:00.00000
+iex(11)> Date.utc_today() |> Moment.end_of_day()
 ~N[2017-08-31 23:59:59.999999]
-iex(12)> Date.utc_today() |> Moment.end_of_day()
-~N[2017-08-31 23:59:59.999999]
-iex(13)> Date.utc_today() |> Moment.hours_from_now(3)
-~N[2017-08-31 03:00:00.000000]
-iex(14) DateTime.utc_today() |>
+iex(12)> Date.utc_today() |> Moment.add(days: 1, weeks: 1, months: 1, years: 1, minutes: 20)
+~N[2018-10-08 00:20:00.000000]
+
+# However, it wont convert to NaiveDateTime unless there are time units
+iex(13)> Date.utc_today() |> Moment.add(days: 1, weeks: 1, months: 1, years: 1)
+~D[2018-10-08]
+
 # The implementations of the protocol for different data types can interoperate
 iex(15)> DateTime.utc_now() |> Moment.ago(1 |> Moment.day())
 #DateTime<2017-08-30 16:41:50.362824Z>
 ```
+
+### Queue
+
+A wrapper for Erlang's :queue module designed with pipe operators in mind
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
