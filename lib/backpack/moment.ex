@@ -1,9 +1,9 @@
 defmodule Backpack.Moment do
   defdelegate add(value, opts), to: Backpack.Moment.Calculator
 
-  defdelegate ago(value, seconds_or_unit \\ :seconds), to: Backpack.Moment.Calculator
+  defdelegate ago(value, seconds_or_unit \\ :nanoseconds), to: Backpack.Moment.Calculator
 
-  defdelegate from_now(value, seconds_or_unit \\ :seconds), to: Backpack.Moment.Calculator
+  defdelegate from_now(value, seconds_or_unit \\ :nanoseconds), to: Backpack.Moment.Calculator
 
   defdelegate minutes_ago(value, minutes), to: Backpack.Moment.Calculator
 
@@ -99,39 +99,39 @@ defmodule Backpack.Moment do
 
   defdelegate past?(value), to: Backpack.Moment.Calculator
 
-  defdelegate years(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate years(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate year(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :years
+  defdelegate year(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :years
 
-  defdelegate months(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate months(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate month(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :months
+  defdelegate month(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :months
 
-  defdelegate weeks(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate weeks(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate week(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :weeks
+  defdelegate week(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :weeks
 
-  defdelegate days(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate days(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate day(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :days
+  defdelegate day(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :days
 
-  defdelegate hours(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate hours(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate hour(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :hours
+  defdelegate hour(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :hours
 
-  defdelegate minutes(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate minutes(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate minute(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :minutes
+  defdelegate minute(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :minutes
 
-  defdelegate seconds(num, unit \\ :seconds), to: Backpack.Moment.Numeric
+  defdelegate seconds(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate second(num, unit \\ :seconds), to: Backpack.Moment.Numeric, as: :seconds
+  defdelegate second(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :seconds
+
+  defdelegate from_unix(timestamp, unit \\ :nanoseconds), to: DateTime
+
+  defdelegate from_unix!(timestamp, unit \\ :nanoseconds), to: DateTime
 
   defdelegate strftime(value, format, lang \\ :en), to: Calendar.Strftime
 
   defdelegate strftime!(value, format, lang \\ :en), to: Calendar.Strftime
-
-  defdelegate from_unix(timestamp), to: DateTime
-
-  defdelegate from_unix!(timestamp), to: DateTime
 end

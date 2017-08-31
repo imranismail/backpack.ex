@@ -10,14 +10,14 @@ defimpl Backpack.Moment.Calculator, for: Integer do
     |> Kernel.+(hours(Keyword.get(opts, :hours, 0)))
     |> Kernel.+(minutes(Keyword.get(opts, :minutes, 0)))
     |> Kernel.+(seconds(Keyword.get(opts, :seconds, 0)))
-    |> System.convert_time_unit(:seconds, Keyword.get(opts, :unit, :seconds))
+    |> System.convert_time_unit(:nanoseconds, Keyword.get(opts, :unit, :nanoseconds))
   end
 
-  def ago(value, unit \\ :seconds) do
+  def ago(value, unit \\ :nanoseconds) do
     System.system_time(unit) - value
   end
 
-  def from_now(value, unit \\ :seconds) do
+  def from_now(value, unit \\ :nanoseconds) do
     System.system_time(unit) + value
   end
 
