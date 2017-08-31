@@ -33,6 +33,16 @@ defimpl Backpack.Moment.Calculator, for: Date do
     |> Kernel.==(:lt)
   end
 
+  def beginning_of_day(value) do
+    {:ok, date_time} = NaiveDateTime.new(value, ~T[00:00:00.000000])
+    Backpack.Moment.Calculator.beginning_of_day(date_time)
+  end
+
+  def end_of_day(value) do
+    {:ok, date_time} = NaiveDateTime.new(value, ~T[00:00:00.000000])
+    Backpack.Moment.Calculator.end_of_day(date_time)
+  end
+
   defp has_time_unit?(opts) do
     opts_unit_set =
       opts
@@ -43,16 +53,6 @@ defimpl Backpack.Moment.Calculator, for: Date do
     |> MapSet.intersection(opts_unit_set)
     |> MapSet.size()
     |> Kernel.>(0)
-  end
-
-  def beginning_of_day(value) do
-    {:ok, date_time} = NaiveDateTime.new(value, ~T[00:00:00.000000])
-    Backpack.Moment.Calculator.beginning_of_day(date_time)
-  end
-
-  def end_of_day(value) do
-    {:ok, date_time} = NaiveDateTime.new(value, ~T[00:00:00.000000])
-    Backpack.Moment.Calculator.end_of_day(date_time)
   end
 
   defdelegate day_of_week(value), to: Date
