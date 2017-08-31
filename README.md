@@ -1,5 +1,7 @@
 # Backpack
 
+[![Hex Version](https://img.shields.io/hexpm/v/backpack.svg)](https://hex.pm/packages/backpack)
+
 Conveniences and tools that I've used throughout my Elixir projects
 
 ## Installation
@@ -54,7 +56,6 @@ iex(14) DateTime.utc_today() |>
 iex(15)> DateTime.utc_now() |> Moment.ago(1 |> Moment.day())
 #DateTime<2017-08-30 16:41:50.362824Z>
 ```
-
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
