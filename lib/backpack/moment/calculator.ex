@@ -3,31 +3,31 @@ defprotocol Backpack.Moment.Calculator do
 
   def ago(value, seconds)
 
-  def since(value, seconds)
+  def from_now(value, seconds)
 
   def minutes_ago(value, minutes)
 
-  def minutes_since(value, minutes)
+  def minutes_from_now(value, minutes)
 
   def hours_ago(value, hours)
 
-  def hours_since(value, hours)
+  def hours_from_now(value, hours)
 
   def days_ago(value, days)
 
-  def days_since(value, days)
+  def days_from_now(value, days)
 
   def weeks_ago(value, weeks)
 
-  def weeks_since(value, weeks)
+  def weeks_from_now(value, weeks)
 
   def months_ago(value, months)
 
-  def months_since(value, months)
+  def months_from_now(value, months)
 
   def years_ago(value, years)
 
-  def years_since(value, years)
+  def years_from_now(value, years)
 
   def beginning_of_day(value)
 

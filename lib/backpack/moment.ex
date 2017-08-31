@@ -3,31 +3,31 @@ defmodule Backpack.Moment do
 
   defdelegate ago(value, seconds_or_unit \\ :seconds), to: Backpack.Moment.Calculator
 
-  defdelegate since(value, seconds_or_unit \\ :seconds), to: Backpack.Moment.Calculator
+  defdelegate from_now(value, seconds_or_unit \\ :seconds), to: Backpack.Moment.Calculator
 
   defdelegate minutes_ago(value, minutes), to: Backpack.Moment.Calculator
 
-  defdelegate minutes_since(value, minutes), to: Backpack.Moment.Calculator
+  defdelegate minutes_from_now(value, minutes), to: Backpack.Moment.Calculator
 
   defdelegate hours_ago(value, hours), to: Backpack.Moment.Calculator
 
-  defdelegate hours_since(value, hours), to: Backpack.Moment.Calculator
+  defdelegate hours_from_now(value, hours), to: Backpack.Moment.Calculator
 
   defdelegate days_ago(value, days), to: Backpack.Moment.Calculator
 
-  defdelegate days_since(value, days), to: Backpack.Moment.Calculator
+  defdelegate days_from_now(value, days), to: Backpack.Moment.Calculator
 
   defdelegate weeks_ago(value, weeks), to: Backpack.Moment.Calculator
 
-  defdelegate weeks_since(value, weeks), to: Backpack.Moment.Calculator
+  defdelegate weeks_from_now(value, weeks), to: Backpack.Moment.Calculator
 
   defdelegate months_ago(value, months), to: Backpack.Moment.Calculator
 
-  defdelegate months_since(value, months), to: Backpack.Moment.Calculator
+  defdelegate months_from_now(value, months), to: Backpack.Moment.Calculator
 
   defdelegate years_ago(value, years), to: Backpack.Moment.Calculator
 
-  defdelegate years_since(value, years), to: Backpack.Moment.Calculator
+  defdelegate years_from_now(value, years), to: Backpack.Moment.Calculator
 
   defdelegate beginning_of_day(value), to: Backpack.Moment.Calculator
 

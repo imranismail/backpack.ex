@@ -17,33 +17,33 @@ defimpl Backpack.Moment.Calculator, for: Integer do
     System.system_time(unit) - value
   end
 
-  def since(value, unit \\ :seconds) do
+  def from_now(value, unit \\ :seconds) do
     System.system_time(unit) + value
   end
 
   def minutes_ago(value, _minutes), do: undefined_error(value)
 
-  def minutes_since(value, _minutes), do: undefined_error(value)
+  def minutes_from_now(value, _minutes), do: undefined_error(value)
 
   def hours_ago(value, _hours), do: undefined_error(value)
 
-  def hours_since(value, _hours), do: undefined_error(value)
+  def hours_from_now(value, _hours), do: undefined_error(value)
 
   def days_ago(value, _days), do: undefined_error(value)
 
-  def days_since(value, _days), do: undefined_error(value)
+  def days_from_now(value, _days), do: undefined_error(value)
 
   def weeks_ago(value, _weeks), do: undefined_error(value)
 
-  def weeks_since(value, _weeks), do: undefined_error(value)
+  def weeks_from_now(value, _weeks), do: undefined_error(value)
 
   def months_ago(value, _months), do: undefined_error(value)
 
-  def months_since(value, _months), do: undefined_error(value)
+  def months_from_now(value, _months), do: undefined_error(value)
 
   def years_ago(value, _years), do: undefined_error(value)
 
-  def years_since(value, _years), do: undefined_error(value)
+  def years_from_now(value, _years), do: undefined_error(value)
 
   def beginning_of_day(value), do: undefined_error(value)
 

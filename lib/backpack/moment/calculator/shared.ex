@@ -3,7 +3,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, seconds: -seconds)
   end
 
-  def since(value, seconds) do
+  def from_now(value, seconds) do
     Backpack.Moment.Calculator.add(value, seconds: seconds)
   end
 
@@ -11,7 +11,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, minutes: -minutes)
   end
 
-  def minutes_since(value, minutes) do
+  def minutes_from_now(value, minutes) do
     Backpack.Moment.Calculator.add(value, minutes: minutes)
   end
 
@@ -19,7 +19,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, hours: -hours)
   end
 
-  def hours_since(value, hours) do
+  def hours_from_now(value, hours) do
     Backpack.Moment.Calculator.add(value, hours: hours)
   end
 
@@ -27,7 +27,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, days: -days)
   end
 
-  def days_since(value, days) do
+  def days_from_now(value, days) do
     Backpack.Moment.Calculator.add(value, days: days)
   end
 
@@ -35,7 +35,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, weeks: -weeks)
   end
 
-  def weeks_since(value, weeks) do
+  def weeks_from_now(value, weeks) do
     Backpack.Moment.Calculator.add(value, weeks: weeks)
   end
 
@@ -43,7 +43,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, months: -months)
   end
 
-  def months_since(value, months) do
+  def months_from_now(value, months) do
     Backpack.Moment.Calculator.add(value, months: months)
   end
 
@@ -51,7 +51,7 @@ defmodule Backpack.Moment.Calculator.Shared do
     Backpack.Moment.Calculator.add(value, years: -years)
   end
 
-  def years_since(value, years) do
+  def years_from_now(value, years) do
     Backpack.Moment.Calculator.add(value, years: years)
   end
 
@@ -90,7 +90,7 @@ defmodule Backpack.Moment.Calculator.Shared do
   end
 
   def end_of_month(value) do
-    date = Date.new(value.year, value.month, value.day)
+    {:ok, date} = Date.new(value.year, value.month, value.day)
     day = Date.days_in_month(date)
 
     value
