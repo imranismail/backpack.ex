@@ -7,27 +7,51 @@ defmodule Backpack.Moment do
 
   defdelegate minutes_ago(value, minutes), to: Backpack.Moment.Calculator
 
+  defdelegate minute_ago(value, minutes), to: Backpack.Moment.Calculator, as: :minutes_ago
+
   defdelegate minutes_from_now(value, minutes), to: Backpack.Moment.Calculator
+
+  defdelegate minute_from_now(value, minutes), to: Backpack.Moment.Calculator, as: :minutes_from_now
 
   defdelegate hours_ago(value, hours), to: Backpack.Moment.Calculator
 
+  defdelegate hour_ago(value, hours), to: Backpack.Moment.Calculator, as: :hours_ago
+
   defdelegate hours_from_now(value, hours), to: Backpack.Moment.Calculator
+
+  defdelegate hour_from_now(value, hours), to: Backpack.Moment.Calculator, as: :hours_from_now
 
   defdelegate days_ago(value, days), to: Backpack.Moment.Calculator
 
+  defdelegate day_ago(value, days), to: Backpack.Moment.Calculator, as: :days_ago
+
   defdelegate days_from_now(value, days), to: Backpack.Moment.Calculator
+
+  defdelegate day_from_now(value, days), to: Backpack.Moment.Calculator, as: :days_from_now
 
   defdelegate weeks_ago(value, weeks), to: Backpack.Moment.Calculator
 
+  defdelegate week_ago(value, weeks), to: Backpack.Moment.Calculator, as: :weeks_ago
+
   defdelegate weeks_from_now(value, weeks), to: Backpack.Moment.Calculator
+
+  defdelegate week_from_now(value, weeks), to: Backpack.Moment.Calculator, as: :weeks_from_now
 
   defdelegate months_ago(value, months), to: Backpack.Moment.Calculator
 
+  defdelegate month_ago(value, months), to: Backpack.Moment.Calculator, as: :months_ago
+
   defdelegate months_from_now(value, months), to: Backpack.Moment.Calculator
+
+  defdelegate month_from_now(value, months), to: Backpack.Moment.Calculator, as: :months_from_now
 
   defdelegate years_ago(value, years), to: Backpack.Moment.Calculator
 
+  defdelegate year_ago(value, years), to: Backpack.Moment.Calculator, as: :years_ago
+
   defdelegate years_from_now(value, years), to: Backpack.Moment.Calculator
+
+  defdelegate year_from_now(value, years), to: Backpack.Moment.Calculator, as: :years_from_now
 
   defdelegate beginning_of_day(value), to: Backpack.Moment.Calculator
 
