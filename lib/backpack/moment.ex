@@ -1,137 +1,137 @@
 defmodule Backpack.Moment do
-  defdelegate add(value, opts), to: Backpack.Moment.Calculator
+  defdelegate add(term, opts), to: Backpack.Moment.Calculator
 
-  defdelegate ago(value, seconds_or_unit \\ :nanoseconds), to: Backpack.Moment.Calculator
+  defdelegate ago(term, seconds_or_unit \\ :nanoseconds), to: Backpack.Moment.Calculator
 
-  defdelegate from_now(value, seconds_or_unit \\ :nanoseconds), to: Backpack.Moment.Calculator
+  defdelegate from_now(term, seconds_or_unit \\ :nanoseconds), to: Backpack.Moment.Calculator
 
-  defdelegate minutes_ago(value, minutes), to: Backpack.Moment.Calculator
+  defdelegate minutes_ago(term, minutes), to: Backpack.Moment.Calculator
 
-  defdelegate minute_ago(value, minutes), to: Backpack.Moment.Calculator, as: :minutes_ago
+  defdelegate minute_ago(term, minutes), to: Backpack.Moment.Calculator, as: :minutes_ago
 
-  defdelegate minutes_from_now(value, minutes), to: Backpack.Moment.Calculator
+  defdelegate minutes_from_now(term, minutes), to: Backpack.Moment.Calculator
 
-  defdelegate minute_from_now(value, minutes), to: Backpack.Moment.Calculator, as: :minutes_from_now
+  defdelegate minute_from_now(term, minutes), to: Backpack.Moment.Calculator, as: :minutes_from_now
 
-  defdelegate hours_ago(value, hours), to: Backpack.Moment.Calculator
+  defdelegate hours_ago(term, hours), to: Backpack.Moment.Calculator
 
-  defdelegate hour_ago(value, hours), to: Backpack.Moment.Calculator, as: :hours_ago
+  defdelegate hour_ago(term, hours), to: Backpack.Moment.Calculator, as: :hours_ago
 
-  defdelegate hours_from_now(value, hours), to: Backpack.Moment.Calculator
+  defdelegate hours_from_now(term, hours), to: Backpack.Moment.Calculator
 
-  defdelegate hour_from_now(value, hours), to: Backpack.Moment.Calculator, as: :hours_from_now
+  defdelegate hour_from_now(term, hours), to: Backpack.Moment.Calculator, as: :hours_from_now
 
-  defdelegate days_ago(value, days), to: Backpack.Moment.Calculator
+  defdelegate days_ago(term, days), to: Backpack.Moment.Calculator
 
-  defdelegate day_ago(value, days), to: Backpack.Moment.Calculator, as: :days_ago
+  defdelegate day_ago(term, days), to: Backpack.Moment.Calculator, as: :days_ago
 
-  defdelegate days_from_now(value, days), to: Backpack.Moment.Calculator
+  defdelegate days_from_now(term, days), to: Backpack.Moment.Calculator
 
-  defdelegate day_from_now(value, days), to: Backpack.Moment.Calculator, as: :days_from_now
+  defdelegate day_from_now(term, days), to: Backpack.Moment.Calculator, as: :days_from_now
 
-  defdelegate weeks_ago(value, weeks), to: Backpack.Moment.Calculator
+  defdelegate weeks_ago(term, weeks), to: Backpack.Moment.Calculator
 
-  defdelegate week_ago(value, weeks), to: Backpack.Moment.Calculator, as: :weeks_ago
+  defdelegate week_ago(term, weeks), to: Backpack.Moment.Calculator, as: :weeks_ago
 
-  defdelegate weeks_from_now(value, weeks), to: Backpack.Moment.Calculator
+  defdelegate weeks_from_now(term, weeks), to: Backpack.Moment.Calculator
 
-  defdelegate week_from_now(value, weeks), to: Backpack.Moment.Calculator, as: :weeks_from_now
+  defdelegate week_from_now(term, weeks), to: Backpack.Moment.Calculator, as: :weeks_from_now
 
-  defdelegate months_ago(value, months), to: Backpack.Moment.Calculator
+  defdelegate months_ago(term, months), to: Backpack.Moment.Calculator
 
-  defdelegate month_ago(value, months), to: Backpack.Moment.Calculator, as: :months_ago
+  defdelegate month_ago(term, months), to: Backpack.Moment.Calculator, as: :months_ago
 
-  defdelegate months_from_now(value, months), to: Backpack.Moment.Calculator
+  defdelegate months_from_now(term, months), to: Backpack.Moment.Calculator
 
-  defdelegate month_from_now(value, months), to: Backpack.Moment.Calculator, as: :months_from_now
+  defdelegate month_from_now(term, months), to: Backpack.Moment.Calculator, as: :months_from_now
 
-  defdelegate years_ago(value, years), to: Backpack.Moment.Calculator
+  defdelegate years_ago(term, years), to: Backpack.Moment.Calculator
 
-  defdelegate year_ago(value, years), to: Backpack.Moment.Calculator, as: :years_ago
+  defdelegate year_ago(term, years), to: Backpack.Moment.Calculator, as: :years_ago
 
-  defdelegate years_from_now(value, years), to: Backpack.Moment.Calculator
+  defdelegate years_from_now(term, years), to: Backpack.Moment.Calculator
 
-  defdelegate year_from_now(value, years), to: Backpack.Moment.Calculator, as: :years_from_now
+  defdelegate year_from_now(term, years), to: Backpack.Moment.Calculator, as: :years_from_now
 
-  defdelegate beginning_of_day(value), to: Backpack.Moment.Calculator
+  defdelegate beginning_of_day(term), to: Backpack.Moment.Calculator
 
-  defdelegate end_of_day(value), to: Backpack.Moment.Calculator
+  defdelegate end_of_day(term), to: Backpack.Moment.Calculator
 
-  defdelegate beginning_of_week(value), to: Backpack.Moment.Calculator
+  defdelegate beginning_of_week(term), to: Backpack.Moment.Calculator
 
-  defdelegate end_of_week(value), to: Backpack.Moment.Calculator
+  defdelegate end_of_week(term), to: Backpack.Moment.Calculator
 
-  defdelegate beginning_of_month(value), to: Backpack.Moment.Calculator
+  defdelegate beginning_of_month(term), to: Backpack.Moment.Calculator
 
-  defdelegate end_of_month(value), to: Backpack.Moment.Calculator
+  defdelegate end_of_month(term), to: Backpack.Moment.Calculator
 
-  defdelegate beginning_of_quarter(value), to: Backpack.Moment.Calculator
+  defdelegate beginning_of_quarter(term), to: Backpack.Moment.Calculator
 
-  defdelegate end_of_quarter(value), to: Backpack.Moment.Calculator
+  defdelegate end_of_quarter(term), to: Backpack.Moment.Calculator
 
-  defdelegate beginning_of_year(value), to: Backpack.Moment.Calculator
+  defdelegate beginning_of_year(term), to: Backpack.Moment.Calculator
 
-  defdelegate end_of_year(value), to: Backpack.Moment.Calculator
+  defdelegate end_of_year(term), to: Backpack.Moment.Calculator
 
-  defdelegate yesterday(value), to: Backpack.Moment.Calculator
+  defdelegate yesterday(term), to: Backpack.Moment.Calculator
 
-  defdelegate tomorrow(value), to: Backpack.Moment.Calculator
+  defdelegate tomorrow(term), to: Backpack.Moment.Calculator
 
-  defdelegate last_week(value), to: Backpack.Moment.Calculator
+  defdelegate last_week(term), to: Backpack.Moment.Calculator
 
-  defdelegate next_week(value), to: Backpack.Moment.Calculator
+  defdelegate next_week(term), to: Backpack.Moment.Calculator
 
-  defdelegate last_month(value), to: Backpack.Moment.Calculator
+  defdelegate last_month(term), to: Backpack.Moment.Calculator
 
-  defdelegate next_month(value), to: Backpack.Moment.Calculator
+  defdelegate next_month(term), to: Backpack.Moment.Calculator
 
-  defdelegate last_year(value), to: Backpack.Moment.Calculator
+  defdelegate last_year(term), to: Backpack.Moment.Calculator
 
-  defdelegate next_year(value), to: Backpack.Moment.Calculator
+  defdelegate next_year(term), to: Backpack.Moment.Calculator
 
-  defdelegate quarter(value), to: Backpack.Moment.Calculator
+  defdelegate quarter(term), to: Backpack.Moment.Calculator
 
-  defdelegate day_of_week(value), to: Backpack.Moment.Calculator
+  defdelegate day_of_week(term), to: Backpack.Moment.Calculator
 
-  defdelegate today?(value), to: Backpack.Moment.Calculator
+  defdelegate today?(term), to: Backpack.Moment.Calculator
 
-  defdelegate future?(value), to: Backpack.Moment.Calculator
+  defdelegate future?(term), to: Backpack.Moment.Calculator
 
-  defdelegate past?(value), to: Backpack.Moment.Calculator
+  defdelegate past?(term), to: Backpack.Moment.Calculator
 
-  defdelegate years(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate years(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate year(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :years
+  defdelegate year(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :years
 
-  defdelegate months(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate months(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate month(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :months
+  defdelegate month(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :months
 
-  defdelegate weeks(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate weeks(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate week(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :weeks
+  defdelegate week(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :weeks
 
-  defdelegate days(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate days(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate day(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :days
+  defdelegate day(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :days
 
-  defdelegate hours(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate hours(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate hour(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :hours
+  defdelegate hour(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :hours
 
-  defdelegate minutes(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate minutes(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate minute(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :minutes
+  defdelegate minute(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :minutes
 
-  defdelegate seconds(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
+  defdelegate seconds(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric
 
-  defdelegate second(num, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :seconds
+  defdelegate second(term, unit \\ :nanoseconds), to: Backpack.Moment.Numeric, as: :seconds
 
   defdelegate from_unix(timestamp, unit \\ :nanoseconds), to: DateTime
 
   defdelegate from_unix!(timestamp, unit \\ :nanoseconds), to: DateTime
 
-  defdelegate strftime(value, format, lang \\ :en), to: Calendar.Strftime
+  defdelegate strftime(term, format, lang \\ :en), to: Calendar.Strftime
 
-  defdelegate strftime!(value, format, lang \\ :en), to: Calendar.Strftime
+  defdelegate strftime!(term, format, lang \\ :en), to: Calendar.Strftime
 end

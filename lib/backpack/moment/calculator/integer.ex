@@ -1,8 +1,8 @@
 defimpl Backpack.Moment.Calculator, for: Integer do
   import Backpack.Moment.Numeric
 
-  def add(value, opts) do
-    value
+  def add(term, opts) do
+    term
     |> Kernel.+(years(Keyword.get(opts, :years, 0)))
     |> Kernel.+(months(Keyword.get(opts, :months, 0)))
     |> Kernel.+(weeks(Keyword.get(opts, :weeks, 0)))
@@ -13,85 +13,85 @@ defimpl Backpack.Moment.Calculator, for: Integer do
     |> System.convert_time_unit(:nanoseconds, Keyword.get(opts, :unit, :nanoseconds))
   end
 
-  def ago(value, unit \\ :nanoseconds) do
-    System.system_time(unit) - value
+  def ago(term, unit \\ :nanoseconds) do
+    System.system_time(unit) - term
   end
 
-  def from_now(value, unit \\ :nanoseconds) do
-    System.system_time(unit) + value
+  def from_now(term, unit \\ :nanoseconds) do
+    System.system_time(unit) + term
   end
 
-  def minutes_ago(value, _minutes), do: undefined_error(value)
+  def minutes_ago(term, _minutes), do: undefined_error(term)
 
-  def minutes_from_now(value, _minutes), do: undefined_error(value)
+  def minutes_from_now(term, _minutes), do: undefined_error(term)
 
-  def hours_ago(value, _hours), do: undefined_error(value)
+  def hours_ago(term, _hours), do: undefined_error(term)
 
-  def hours_from_now(value, _hours), do: undefined_error(value)
+  def hours_from_now(term, _hours), do: undefined_error(term)
 
-  def days_ago(value, _days), do: undefined_error(value)
+  def days_ago(term, _days), do: undefined_error(term)
 
-  def days_from_now(value, _days), do: undefined_error(value)
+  def days_from_now(term, _days), do: undefined_error(term)
 
-  def weeks_ago(value, _weeks), do: undefined_error(value)
+  def weeks_ago(term, _weeks), do: undefined_error(term)
 
-  def weeks_from_now(value, _weeks), do: undefined_error(value)
+  def weeks_from_now(term, _weeks), do: undefined_error(term)
 
-  def months_ago(value, _months), do: undefined_error(value)
+  def months_ago(term, _months), do: undefined_error(term)
 
-  def months_from_now(value, _months), do: undefined_error(value)
+  def months_from_now(term, _months), do: undefined_error(term)
 
-  def years_ago(value, _years), do: undefined_error(value)
+  def years_ago(term, _years), do: undefined_error(term)
 
-  def years_from_now(value, _years), do: undefined_error(value)
+  def years_from_now(term, _years), do: undefined_error(term)
 
-  def beginning_of_day(value), do: undefined_error(value)
+  def beginning_of_day(term), do: undefined_error(term)
 
-  def end_of_day(value), do: undefined_error(value)
+  def end_of_day(term), do: undefined_error(term)
 
-  def beginning_of_week(value), do: undefined_error(value)
+  def beginning_of_week(term), do: undefined_error(term)
 
-  def end_of_week(value), do: undefined_error(value)
+  def end_of_week(term), do: undefined_error(term)
 
-  def beginning_of_month(value), do: undefined_error(value)
+  def beginning_of_month(term), do: undefined_error(term)
 
-  def end_of_month(value), do: undefined_error(value)
+  def end_of_month(term), do: undefined_error(term)
 
-  def beginning_of_quarter(value), do: undefined_error(value)
+  def beginning_of_quarter(term), do: undefined_error(term)
 
-  def end_of_quarter(value), do: undefined_error(value)
+  def end_of_quarter(term), do: undefined_error(term)
 
-  def beginning_of_year(value), do: undefined_error(value)
+  def beginning_of_year(term), do: undefined_error(term)
 
-  def end_of_year(value), do: undefined_error(value)
+  def end_of_year(term), do: undefined_error(term)
 
-  def yesterday(value), do: undefined_error(value)
+  def yesterday(term), do: undefined_error(term)
 
-  def tomorrow(value), do: undefined_error(value)
+  def tomorrow(term), do: undefined_error(term)
 
-  def last_week(value), do: undefined_error(value)
+  def last_week(term), do: undefined_error(term)
 
-  def next_week(value), do: undefined_error(value)
+  def next_week(term), do: undefined_error(term)
 
-  def last_month(value), do: undefined_error(value)
+  def last_month(term), do: undefined_error(term)
 
-  def next_month(value), do: undefined_error(value)
+  def next_month(term), do: undefined_error(term)
 
-  def last_year(value), do: undefined_error(value)
+  def last_year(term), do: undefined_error(term)
 
-  def next_year(value), do: undefined_error(value)
+  def next_year(term), do: undefined_error(term)
 
-  def quarter(value), do: undefined_error(value)
+  def quarter(term), do: undefined_error(term)
 
-  def day_of_week(value), do: undefined_error(value)
+  def day_of_week(term), do: undefined_error(term)
 
-  def today?(value), do: undefined_error(value)
+  def today?(term), do: undefined_error(term)
 
-  def future?(value), do: undefined_error(value)
+  def future?(term), do: undefined_error(term)
 
-  def past?(value), do: undefined_error(value)
+  def past?(term), do: undefined_error(term)
 
-  defp undefined_error(value) do
-    raise Protocol.UndefinedError, protocol: Backpack.Moment.Calculator, value: value
+  defp undefined_error(term) do
+    raise Protocol.UndefinedError, protocol: Backpack.Moment.Calculator, value: term
   end
 end
