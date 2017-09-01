@@ -18,9 +18,16 @@ end
 ```
 
 ## Includes
-
+An ActiveSupport inspired way of handling dates and times.
 ### Moment
-An ActiveSupport inspired way of handling dates and times
+
+
+
+I'm well aware that [timex](https://github.com/bitwalker/timex) has some of these functions. However, I'm not a fan of [timex](https://github.com/bitwalker/timex) and usually use [calendar](https://github.com/lau/calendar) instead. I find it to be more performant when dealing with collections.
+
+This module works best with [calendar](https://github.com/lau/calendar), infact it uses [calendar](https://github.com/lau/calendar) underneath for some of it's functions like `Moment.strftime/2` to have a uniformed API.
+
+However you may also keep things simple and stick to just storing date/time in UTC using NaiveDateTime/DateTime/Date.
 
 ```elixir
 iex(1)> use Backpack, :moment
@@ -63,9 +70,9 @@ iex(15)> DateTime.utc_now() |> Moment.ago(1 |> Moment.day())
 #DateTime<2017-08-30 16:41:50.362824Z>
 ```
 
-### Queue
+## Inflex
 
-A wrapper for Erlang's :queue module designed with pipe operators in mind
+An ActiveSupport inspired way of handling strings.
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
