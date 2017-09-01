@@ -1,4 +1,6 @@
 defmodule Backpack.Inflex.Inflector do
+  import Backpack.Inflex.Helpers
+
   def camelize(term, uppercase_first_letter \\ true)
 
   def camelize(term, true),
@@ -61,10 +63,4 @@ defmodule Backpack.Inflex.Inflector do
       String.downcase(parameterized)
     end
   end
-
-  def to_upper_char(char) when char >= ?a and char <= ?z, do: char - 32
-  def to_upper_char(char), do: char
-
-  def to_lower_char(char) when char >= ?A and char <= ?Z, do: char + 32
-  def to_lower_char(char), do: char
 end
