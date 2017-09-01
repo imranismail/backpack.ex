@@ -72,7 +72,9 @@ iex(15)> DateTime.utc_now() |> Moment.ago(1 |> Moment.day())
 
 ## Inflex
 
-An ActiveSupport inspired way of handling strings.
+An ActiveSupport inspired way of handling strings built using binary pattern matching.
+
+Regex is always avoided unless needed.
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can

@@ -9,7 +9,7 @@ defmodule Backpack.Inflex.Inflector do
     do: ""
   def camelize(<<?_, tail::binary>>, false),
     do: camelize(tail, false)
-  def camelize(<<head, _tail::binary>> = term, false) do
+  def camelize(<<head::utf8, _tail::binary>> = term, false) do
     <<_head, tail::binary>> = camelize(term)
     <<to_lower_char(head)>> <> tail
   end
@@ -18,8 +18,8 @@ defmodule Backpack.Inflex.Inflector do
     do: ""
   def dasherize(<<?_, tail::binary>>),
     do: "-" <> dasherize(tail)
-  def dasherize(<<head, tail::binary>>),
-    do: <<head>> <> dasherize(tail)
+  def dasherize(<<head::utf8, tail::binary>>),
+    do: <<head::utf8>> <> dasherize(tail)
 
   def underscore(term),
     do: Macro.underscore(term)
@@ -28,14 +28,14 @@ defmodule Backpack.Inflex.Inflector do
     do: ""
   def humanize(<<?_, tail::binary>>),
     do: " " <> humanize(tail)
-  def humanize(<<head, tail::binary>>),
+  def humanize(<<head::utf8, tail::binary>>),
     do: String.capitalize(<<head>> <> humanize(tail))
 
   def transliterate(term, replacement \\ "?", lang \\ :en)
   def transliterate("", _replacement, _lang),
     do: ""
   def transliterate(<<head::utf8, tail::binary>>, replacement, lang) when head < 128,
-    do: <<head::utf8>> <> transliterate(tail, replacement, lang)
+    do: <<head>> <> transliterate(tail, replacement, lang)
   def transliterate(<<head::utf8, tail::binary>>, replacement, lang) do
     transliterator = Backpack.Transliterator.get(lang)
     transliterator.transliterate(<<head::utf8>>, replacement) <>
@@ -43,19 +43,17 @@ defmodule Backpack.Inflex.Inflector do
   end
 
   def parameterize(term, opts \\ []) do
-    separator = Keyword.get(opts, :separator, "-")
     preserve_case? = Keyword.get(opts, :preserve_case, false)
-
-    re_sep = Regex.escape(separator)
-    re_duplicate_separator = ~r/#{re_sep}{2,}/
-    re_leading_trailing_separator = ~r/^#{re_sep}|#{re_sep}$/i
+    separator = Keyword.get(opts, :separator, "-")
+    regex_separator = Regex.escape(separator)
 
     parameterized =
       term
       |> transliterate()
-      |> String.replace(~r/[^a-z0-9\-_]+/i, separator, global: true)
-      |> String.replace(re_duplicate_separator, separator, global: true)
-      |> String.replace(re_leading_trailing_separator, "", global: true)
+      |> transform_unwanted_parameter_chars(separator)
+      |> String.replace(~r/#{regex_separator}{2,}/, separator, global: true)
+      |> String.trim_leading(separator)
+      |> String.trim_trailing(separator)
 
     if preserve_case? do
       parameterized
@@ -63,4 +61,21 @@ defmodule Backpack.Inflex.Inflector do
       String.downcase(parameterized)
     end
   end
+
+  def titleize(term) do
+    <<head, tail::binary>> =
+      term
+      |> underscore()
+      |> humanize()
+      |> do_titleize()
+
+    <<to_upper_char(head)>> <> tail
+  end
+
+  defp do_titleize(""),
+    do: ""
+  defp do_titleize(<<?\s, head, tail::binary>>),
+    do: " " <> <<to_upper_char(head)>> <> do_titleize(tail)
+  defp do_titleize(<<head::utf8, tail::binary>>),
+    do: <<head>> <> do_titleize(tail)
 end

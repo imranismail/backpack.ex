@@ -17,4 +17,6 @@ defmodule Backpack.Inflex do
   defdelegate parameterize(term, opts \\ []), to: Backpack.Inflex.Inflector
 
   defdelegate transliterate(term, replacement \\ "?", lang \\ :en), to: Backpack.Inflex.Inflector
+
+  defdelegate titleize(term), to: Backpack.Inflex.Inflector
 end
