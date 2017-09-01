@@ -52,8 +52,7 @@ defmodule Backpack.Inflex.Inflector do
       |> transliterate()
       |> transform_unwanted_parameter_chars(separator)
       |> String.replace(~r/#{regex_separator}{2,}/, separator, global: true)
-      |> String.trim_leading(separator)
-      |> String.trim_trailing(separator)
+      |> String.trim(separator)
 
     if preserve_case? do
       parameterized
