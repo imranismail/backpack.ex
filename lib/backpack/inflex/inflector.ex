@@ -62,19 +62,16 @@ defmodule Backpack.Inflex.Inflector do
   end
 
   def titleize(term) do
-    <<head, tail::binary>> =
-      term
-      |> underscore()
-      |> humanize()
-      |> do_titleize()
-
-    <<to_upper_char(head)>> <> tail
+    term
+    |> underscore()
+    |> humanize()
+    |> do_titleize()
   end
 
-  defp do_titleize(""),
-    do: ""
   defp do_titleize(<<?\s, head, tail::binary>>),
-    do: " " <> <<to_upper_char(head)>> <> do_titleize(tail)
-  defp do_titleize(<<head::utf8, tail::binary>>),
+    do: <<?\s>> <> <<to_upper_char(head)>> <> do_titleize(tail)
+  defp do_titleize(<<head, tail::binary>>),
     do: <<head>> <> do_titleize(tail)
+  defp do_titleize(<<>>),
+    do: <<>>
 end
