@@ -30,7 +30,7 @@ This module works best with [calendar](https://github.com/lau/calendar), infact 
 However you may also keep things simple and stick to just storing date/time in UTC using NaiveDateTime/DateTime/Date.
 
 ```elixir
-iex(1)> use Backpack, :moment
+iex(1)> alias Backpack.Moment
 Backpack.Moment
 
 # It can work with integers and output to unix timestamp
@@ -75,6 +75,69 @@ iex(15)> DateTime.utc_now() |> Moment.ago(1 |> Moment.day())
 An ActiveSupport inspired way of handling strings built using binary pattern matching.
 
 Regex is always avoided unless needed.
+
+```elixir
+iex(1)> alias Backpack.Inflex
+Backpack.Inflex
+
+# Camelize
+iex(2)> Inflex.camelize("iron_man")
+"IronMan"
+iex(3)> Inflex.camelize("iron_man", :lower)
+"ironMan"
+iex(3)> Inflex.camelize("iron_man/avenger")
+"IronMan.Avenger"
+iex(4)> Inflex.camelize("iron_man/avenger", :lower)
+"imranIsmail.Avenger"
+
+# Underscore
+iex(5)> Inflex.underscore("IronMan")
+"iron_man"
+iex(6)> Inflex.underscore("IronMan.Avenger")
+"iron_man/avenger"
+
+# Dasherize
+iex(7)> Inflex.dasherize("iron_man")
+"iron-man"
+iex(8)> Inflex.dasherize("iron_man")
+"iron-man"
+
+# Humanize
+iex(8)> Inflex.humanize("iron_man")
+"Imran ismail"
+iex(9)> Inflex.humanize("user_id")
+"User"
+iex(10)> Inflex.humanize("user_id", capitalize: false)
+"user"
+iex(11)> Inflex.humanize("_id")
+"Id"
+
+# Transliterate
+# It's pretty basic right now, but I'm working on integrating Unicode's CLDR
+# Need some help on this, ping me if you have experience doing this
+iex(12)> Inflex.transliterate("Ærøskøbing")
+"AEroskobing"
+
+# Parameterize
+iex(12)> Inflex.parameterize("Donald E. Knuth")
+"donald-e-knuth"
+iex(13)> Inflex.parameterize("Ærøskøbing.-Ærøskøbing")
+"aeroskobing-aeroskobing"
+iex(14)> Inflex.parameterize("Donald E. Knuth", preserve_case: true)
+"Donald-E-Knuth"
+iex(15)> Inflex.parameterize("Donald E. Knuth", separator: "_")
+"donald_e_knuth"
+
+# Titleize
+iex(15)> Inflex.titleize("man from the boondocks")
+"Man From The Boondocks"
+iex(16)> Inflex.titleize("x-men: the last stand")
+"X Men: The Last Stand"
+iex(17)> Inflex.titleize("TheManWithoutAPast")
+"The Man Without A Past"
+iex(18)> Inflex.titleize("raiders_of_the_lost_ark")
+"Raiders Of The Lost Ark"
+```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
