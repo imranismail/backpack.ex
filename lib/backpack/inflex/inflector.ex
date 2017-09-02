@@ -21,8 +21,30 @@ defmodule Backpack.Inflex.Inflector do
   def dasherize(<<head::utf8, tail::binary>>),
     do: <<head::utf8>> <> dasherize(tail)
 
-  def underscore(term),
-    do: Macro.underscore(term)
+  defp do_underscore(<<h, t, rest::binary>>, _)
+  when (h >= ?A and h <= ?Z)
+  and not (t >= ?A and t <= ?Z)
+  and t != ?. and t != ?_ do
+    <<?_, to_lower_char(h), t>> <> do_underscore(rest, t)
+  end
+  defp do_underscore(<<h, t::binary>>, prev)
+  when (h >= ?A and h <= ?Z)
+  and not (prev >= ?A and prev <= ?Z)
+  and prev != ?_ do
+    <<?_, to_lower_char(h)>> <> do_underscore(t, h)
+  end
+  defp do_underscore(<<?., t::binary>>, _) do
+    <<?/>> <> underscore(t)
+  end
+  defp do_underscore(<<?-, t::binary>>, _) do
+    <<?_>> <> underscore(t)
+  end
+  defp do_underscore(<<h, t::binary>>, _) do
+    <<to_lower_char(h)>> <> do_underscore(t, h)
+  end
+  defp do_underscore(<<>>, _) do
+    <<>>
+  end
 
   def humanize(""),
     do: ""
