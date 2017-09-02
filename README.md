@@ -18,10 +18,12 @@ end
 ```
 
 ## Includes
-An ActiveSupport inspired way of handling dates and times.
+
 ### Moment
 
+An ActiveSupport inspired way of handling dates and times.
 
+#### Disclaimer
 
 I'm well aware that [timex](https://github.com/bitwalker/timex) has some of these functions. However, I'm not a fan of [timex](https://github.com/bitwalker/timex) and usually use [calendar](https://github.com/lau/calendar) instead. I find it to be more performant when dealing with collections.
 
@@ -70,7 +72,7 @@ iex(15)> DateTime.utc_now() |> Moment.ago(1 |> Moment.day())
 #DateTime<2017-08-30 16:41:50.362824Z>
 ```
 
-## Inflex
+### Inflex
 
 An ActiveSupport inspired way of handling strings built using binary pattern matching.
 
@@ -139,7 +141,7 @@ iex(18)> Inflex.titleize("raiders_of_the_lost_ark")
 "Raiders Of The Lost Ark"
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/backpack](https://hexdocs.pm/backpack).
-
+## References
+- [Phoenix.Naming](https://hexdocs.pm/phoenix/Phoenix.Naming.html)
+- [ActiveSupport](https://github.com/wycats/rails-api/blob/master/vendor/rails/activesupport/lib/active_support/)
+- [Macro](https://hexdocs.pm/elixir/Macro.html)
