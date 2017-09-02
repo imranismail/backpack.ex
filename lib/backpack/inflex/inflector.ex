@@ -5,21 +5,20 @@ defmodule Backpack.Inflex.Inflector do
 
   def camelize(term, true),
     do: Macro.camelize(term)
-  def camelize("", false),
-    do: ""
-  def camelize(<<?_, tail::binary>>, false),
-    do: camelize(tail, false)
-  def camelize(<<head::utf8, _tail::binary>> = term, false) do
-    <<_head, tail::binary>> = camelize(term)
+  def camelize(<<>>, false),
+    do: <<>>
+  def camelize(term, false) do
+    camelized = String.trim(term, "_")
+    <<head, tail::binary>> = camelize(camelized)
     <<to_lower_char(head)>> <> tail
   end
 
-  def dasherize(""),
-    do: ""
-  def dasherize(<<?_, tail::binary>>),
-    do: "-" <> dasherize(tail)
-  def dasherize(<<head::utf8, tail::binary>>),
-    do: <<head::utf8>> <> dasherize(tail)
+  def underscore(<<h, t::binary>>) do
+    <<to_lower_char(h)>> <> do_underscore(t, h)
+  end
+  def underscore("") do
+    ""
+  end
 
   defp do_underscore(<<h, t, rest::binary>>, _)
   when (h >= ?A and h <= ?Z)
@@ -46,16 +45,28 @@ defmodule Backpack.Inflex.Inflector do
     <<>>
   end
 
-  def humanize(""),
-    do: ""
-  def humanize(<<?_, tail::binary>>),
-    do: " " <> humanize(tail)
-  def humanize(<<head::utf8, tail::binary>>),
-    do: String.capitalize(<<head>> <> humanize(tail))
+  def dasherize(term),
+    do: String.replace(term, "_", "-")
+
+  def humanize(term, opts \\ []) do
+    capitalize? = Keyword.get(opts, :capitalize, true)
+
+    humanized =
+      term
+      |> String.trim("_")
+      |> String.trim_trailing("_id")
+      |> String.replace("_", " ")
+
+    if capitalize? do
+      String.capitalize(humanized)
+    else
+      humanized
+    end
+  end
 
   def transliterate(term, replacement \\ "?", lang \\ :en)
-  def transliterate("", _replacement, _lang),
-    do: ""
+  def transliterate(<<>>, _replacement, _lang),
+    do: <<>>
   def transliterate(<<head::utf8, tail::binary>>, replacement, lang) when head < 128,
     do: <<head>> <> transliterate(tail, replacement, lang)
   def transliterate(<<head::utf8, tail::binary>>, replacement, lang) do

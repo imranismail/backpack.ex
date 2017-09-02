@@ -8,11 +8,11 @@ defmodule Backpack.Inflex do
     end
   end
 
-  defdelegate dasherize(term), to: Backpack.Inflex.Inflector
-
   defdelegate underscore(term), to: Backpack.Inflex.Inflector
 
-  defdelegate humanize(term), to: Backpack.Inflex.Inflector
+  defdelegate dasherize(term), to: Backpack.Inflex.Inflector
+
+  defdelegate humanize(term, opts \\ []), to: Backpack.Inflex.Inflector
 
   defdelegate parameterize(term, opts \\ []), to: Backpack.Inflex.Inflector
 
