@@ -12,7 +12,7 @@ by adding `backpack` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:backpack, "~> 0.3.0"}
+    {:backpack, "~> 0.4.0"}
   ]
 end
 ```
