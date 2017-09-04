@@ -1,9 +1,9 @@
 defimpl Backpack.Moment.Calculator, for: NaiveDateTime do
-  def add(term, opts) do
-    sum = Backpack.Moment.Calculator.add(0, opts)
+  def shift(term, opts) do
+    sum = Backpack.Moment.Calculator.shift(0, opts)
 
     term
-    |> NaiveDateTime.add(sum, Keyword.get(opts, :unit, :nanoseconds))
+    |> NaiveDateTime.add(sum, Keyword.get(opts, :unit, :seconds))
     |> NaiveDateTime.add(Keyword.get(opts, :milliseconds, 0), :milliseconds)
     |> NaiveDateTime.add(Keyword.get(opts, :microseconds, 0), :microseconds)
     |> NaiveDateTime.add(Keyword.get(opts, :nanoseconds, 0), :nanoseconds)

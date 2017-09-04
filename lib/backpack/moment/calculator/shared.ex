@@ -1,58 +1,58 @@
 defmodule Backpack.Moment.Calculator.Shared do
   def ago(term, seconds) do
-    Backpack.Moment.Calculator.add(term, seconds: -seconds)
+    Backpack.Moment.Calculator.shift(term, seconds: -seconds)
   end
 
   def from_now(term, seconds) do
-    Backpack.Moment.Calculator.add(term, seconds: seconds)
+    Backpack.Moment.Calculator.shift(term, seconds: seconds)
   end
 
   def minutes_ago(term, minutes) do
-    Backpack.Moment.Calculator.add(term, minutes: -minutes)
+    Backpack.Moment.Calculator.shift(term, minutes: -minutes)
   end
 
   def minutes_from_now(term, minutes) do
-    Backpack.Moment.Calculator.add(term, minutes: minutes)
+    Backpack.Moment.Calculator.shift(term, minutes: minutes)
   end
 
   def hours_ago(term, hours) do
-    Backpack.Moment.Calculator.add(term, hours: -hours)
+    Backpack.Moment.Calculator.shift(term, hours: -hours)
   end
 
   def hours_from_now(term, hours) do
-    Backpack.Moment.Calculator.add(term, hours: hours)
+    Backpack.Moment.Calculator.shift(term, hours: hours)
   end
 
   def days_ago(term, days) do
-    Backpack.Moment.Calculator.add(term, days: -days)
+    Backpack.Moment.Calculator.shift(term, days: -days)
   end
 
   def days_from_now(term, days) do
-    Backpack.Moment.Calculator.add(term, days: days)
+    Backpack.Moment.Calculator.shift(term, days: days)
   end
 
   def weeks_ago(term, weeks) do
-    Backpack.Moment.Calculator.add(term, weeks: -weeks)
+    Backpack.Moment.Calculator.shift(term, weeks: -weeks)
   end
 
   def weeks_from_now(term, weeks) do
-    Backpack.Moment.Calculator.add(term, weeks: weeks)
+    Backpack.Moment.Calculator.shift(term, weeks: weeks)
   end
 
   def months_ago(term, months) do
-    Backpack.Moment.Calculator.add(term, months: -months)
+    Backpack.Moment.Calculator.shift(term, months: -months)
   end
 
   def months_from_now(term, months) do
-    Backpack.Moment.Calculator.add(term, months: months)
+    Backpack.Moment.Calculator.shift(term, months: months)
   end
 
   def years_ago(term, years) do
-    Backpack.Moment.Calculator.add(term, years: -years)
+    Backpack.Moment.Calculator.shift(term, years: -years)
   end
 
   def years_from_now(term, years) do
-    Backpack.Moment.Calculator.add(term, years: years)
+    Backpack.Moment.Calculator.shift(term, years: years)
   end
 
   def beginning_of_day(term) do
@@ -73,13 +73,13 @@ defmodule Backpack.Moment.Calculator.Shared do
 
   def beginning_of_week(term) do
     term
-    |> Backpack.Moment.Calculator.add(days: -(Backpack.Moment.Calculator.day_of_week(term) - 1))
+    |> Backpack.Moment.Calculator.shift(days: -(Backpack.Moment.Calculator.day_of_week(term) - 1))
     |> beginning_of_day()
   end
 
   def end_of_week(term) do
     term
-    |> Backpack.Moment.Calculator.add(days: 7 - Backpack.Moment.Calculator.day_of_week(term))
+    |> Backpack.Moment.Calculator.shift(days: 7 - Backpack.Moment.Calculator.day_of_week(term))
     |> end_of_day()
   end
 
@@ -153,35 +153,35 @@ defmodule Backpack.Moment.Calculator.Shared do
   end
 
   def yesterday(term) do
-    Backpack.Moment.Calculator.add(term, days: -1)
+    Backpack.Moment.Calculator.shift(term, days: -1)
   end
 
   def tomorrow(term) do
-    Backpack.Moment.Calculator.add(term, days: 1)
+    Backpack.Moment.Calculator.shift(term, days: 1)
   end
 
   def last_week(term) do
-    Backpack.Moment.Calculator.add(term, weeks: -1)
+    Backpack.Moment.Calculator.shift(term, weeks: -1)
   end
 
   def next_week(term) do
-    Backpack.Moment.Calculator.add(term, weeks: 1)
+    Backpack.Moment.Calculator.shift(term, weeks: 1)
   end
 
   def last_month(term) do
-    Backpack.Moment.Calculator.add(term, months: -1)
+    Backpack.Moment.Calculator.shift(term, months: -1)
   end
 
   def next_month(term) do
-    Backpack.Moment.Calculator.add(term, months: 1)
+    Backpack.Moment.Calculator.shift(term, months: 1)
   end
 
   def last_year(term) do
-    Backpack.Moment.Calculator.add(term, years: -1)
+    Backpack.Moment.Calculator.shift(term, years: -1)
   end
 
   def next_year(term) do
-    Backpack.Moment.Calculator.add(term, years: 1)
+    Backpack.Moment.Calculator.shift(term, years: 1)
   end
 
   def quarter(term) do

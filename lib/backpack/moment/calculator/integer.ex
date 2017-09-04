@@ -1,24 +1,25 @@
 defimpl Backpack.Moment.Calculator, for: Integer do
   import Backpack.Moment.Numeric
 
-  def add(term, opts) do
+  def shift(term, opts) do
+    unit = Keyword.get(opts, :unit, :seconds)
+
     term
-    |> Kernel.+(years(Keyword.get(opts, :years, 0)))
-    |> Kernel.+(months(Keyword.get(opts, :months, 0)))
-    |> Kernel.+(weeks(Keyword.get(opts, :weeks, 0)))
-    |> Kernel.+(days(Keyword.get(opts, :days, 0)))
-    |> Kernel.+(hours(Keyword.get(opts, :hours, 0)))
-    |> Kernel.+(minutes(Keyword.get(opts, :minutes, 0)))
-    |> Kernel.+(seconds(Keyword.get(opts, :seconds, 0)))
-    |> System.convert_time_unit(:nanoseconds, Keyword.get(opts, :unit, :nanoseconds))
+    |> Kernel.+(years(Keyword.get(opts, :years, 0), unit))
+    |> Kernel.+(months(Keyword.get(opts, :months, 0), unit))
+    |> Kernel.+(weeks(Keyword.get(opts, :weeks, 0), unit))
+    |> Kernel.+(days(Keyword.get(opts, :days, 0), unit))
+    |> Kernel.+(hours(Keyword.get(opts, :hours, 0), unit))
+    |> Kernel.+(minutes(Keyword.get(opts, :minutes, 0), unit))
+    |> Kernel.+(seconds(Keyword.get(opts, :seconds, 0), unit))
   end
 
-  def ago(term, unit \\ :nanoseconds) do
-    System.system_time(unit) - term
+  def ago(term, unit) do
+    Backpack.Moment.timestamp(unit) - term
   end
 
-  def from_now(term, unit \\ :nanoseconds) do
-    System.system_time(unit) + term
+  def from_now(term, unit) do
+    Backpack.Moment.timestamp(unit) + term
   end
 
   def minutes_ago(term, _minutes), do: undefined_error(term)

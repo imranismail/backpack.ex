@@ -2,10 +2,10 @@ defimpl Backpack.Moment.Calculator, for: Date do
   @time_unit_set MapSet.new([:hours, :minutes, :seconds, :milliseconds,
                              :microseconds, :nanoseconds])
 
-  def add(term, opts) do
+  def shift(term, opts) do
     if has_time_unit?(opts) do
       {:ok, date_time} = NaiveDateTime.new(term, ~T[00:00:00.0000000])
-      Backpack.Moment.Calculator.add(date_time, opts)
+      Backpack.Moment.Calculator.shift(date_time, opts)
     else
       sum_of_days =
         Keyword.get(opts, :years, 0) * 365

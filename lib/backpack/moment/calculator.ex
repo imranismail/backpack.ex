@@ -1,5 +1,5 @@
 defprotocol Backpack.Moment.Calculator do
-  def add(value, opts)
+  def shift(value, opts)
 
   def ago(value, seconds)
 

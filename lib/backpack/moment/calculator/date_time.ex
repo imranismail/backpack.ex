@@ -1,8 +1,8 @@
 defimpl Backpack.Moment.Calculator, for: DateTime do
-  def add(term, opts) do
+  def shift(term, opts) do
     term
     |> DateTime.to_naive()
-    |> Backpack.Moment.Calculator.add(opts)
+    |> Backpack.Moment.Calculator.shift(opts)
     |> DateTime.from_naive!(term.time_zone)
   end
 
