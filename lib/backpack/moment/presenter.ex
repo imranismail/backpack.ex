@@ -76,31 +76,30 @@ defmodule Backpack.Moment.Presenter do
   defp distance_in_minutes_to_words(_minutes),
     do: :more_than_a_year
 
-  defp calculate_minutes_offset(from, to, distance_in_minutes) do
-    if from.__struct__ in [DateTime, NaiveDateTime, Date]
-       && to.__struct__ in [DateTime, NaiveDateTime, Date] do
-      from_year = from.year
-      from_year = if from.month >= 3, do: from_year + 1, else: from_year
-      to_year = to.year
-      to_year = if to.month < 3, do: to_year - 1, else: to_year
-      leap_years =
-        if from_year > to_year do
-          0
-        else
-          from_year..to_year
-          |> Enum.filter(&Calendar.ISO.leap_year?/1)
-          |> Enum.count()
-        end
+  defp calculate_minutes_offset(%from_struct{} = from, %to_struct{} = to, distance_in_minutes)
+  when from_struct in [DateTime, NaiveDateTime, Date]
+  and to_struct in [DateTime, NaiveDateTime, Date] do
+    from_year = from.year
+    from_year = if from.month >= 3, do: from_year + 1, else: from_year
+    to_year = to.year
+    to_year = if to.month < 3, do: to_year - 1, else: to_year
+    leap_years =
+      if from_year > to_year do
+        0
+      else
+        from_year..to_year
+        |> Enum.filter(&Calendar.ISO.leap_year?/1)
+        |> Enum.count()
+      end
 
-      minutes_offset_for_leap_year = leap_years * 1440
-      # Discount the leap year days when calculating year distance.
-      # e.g. if there are 20 leap year days between 2 dates having the same day
-      # and month then the based on 365 days calculation
-      # the distance in years will come out to over 80 years when in written
-      # English it would read better as about 80 years.
-      distance_in_minutes - minutes_offset_for_leap_year
-    else
-      distance_in_minutes
-    end
+    minutes_offset_for_leap_year = leap_years * 1440
+    # Discount the leap year days when calculating year distance.
+    # e.g. if there are 20 leap year days between 2 dates having the same day
+    # and month then the based on 365 days calculation
+    # the distance in years will come out to over 80 years when in written
+    # English it would read better as about 80 years.
+    distance_in_minutes - minutes_offset_for_leap_year
   end
+  defp calculate_minutes_offset(_from, _to, distance_in_minutes),
+    do: distance_in_minutes
 end
