@@ -27,7 +27,7 @@ defmodule Backpack.Moment.Presenter do
         "less than a minute"
       end
     else
-      with :more_than_a_year <- distance_in_minutes_to_words(distance_in_minutes) do
+      with :almost_2_years <- distance_in_minutes_to_words(distance_in_minutes) do
         minutes_with_offset = calculate_minutes_offset(from, to, distance_in_minutes)
         remainder = rem(minutes_with_offset, @minutes_in_year)
         distance_in_years = div(minutes_with_offset, @minutes_in_year)
@@ -71,10 +71,12 @@ defmodule Backpack.Moment.Presenter do
     do: "about a month"
   defp distance_in_minutes_to_words(minutes) when minutes < 525600,
     do: "#{div(minutes, 43200)} months"
-  defp distance_in_minutes_to_words(minutes) when minutes == 525600,
-    do: "a year"
+  defp distance_in_minutes_to_words(minutes) when minutes < 525600 + @minutes_in_quarter_year,
+    do: "about a year"
+  defp distance_in_minutes_to_words(minutes) when minutes < 525600 + @minutes_in_three_quarters_year,
+    do: "over a year"
   defp distance_in_minutes_to_words(_minutes),
-    do: :more_than_a_year
+    do: :almost_2_years
 
   defp calculate_minutes_offset(%from_struct{} = from, %to_struct{} = to, distance_in_minutes)
   when from_struct in [DateTime, NaiveDateTime, Date]
