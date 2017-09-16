@@ -15,7 +15,7 @@ defmodule Backpack.Moment.Presenter do
     from_time = System.convert_time_unit(from_time, unit, :seconds)
     to_time = Backpack.Moment.to_unix(to, unit)
     to_time = System.convert_time_unit(to_time, unit, :seconds)
-    [from_time, to_time] = if from_time > to_time do: [to_time, from_time], else: [from_time, to_time]
+    [from_time, to_time] = if from_time > to_time, do: [to_time, from_time], else: [from_time, to_time]
     distance_in_minutes = round((to_time - from_time) / 60)
     distance_in_seconds = round(to_time - from_time)
 
