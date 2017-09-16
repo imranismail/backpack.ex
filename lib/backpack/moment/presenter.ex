@@ -11,14 +11,13 @@ defmodule Backpack.Moment.Presenter do
   def distance_of_time_in_words(from, to, opts) do
     unit = Keyword.get(opts, :unit, :seconds)
     include_seconds = Keyword.get(opts, :include_seconds, false)
-
-    distance_in_seconds =
-      to
-      |> Backpack.Moment.to_unix(unit)
-      |> Kernel.-(Backpack.Moment.to_unix(from, unit))
-      |> System.convert_time_unit(unit, :seconds)
-
-    distance_in_minutes = div(distance_in_seconds, 60)
+    from_time = Backpack.Moment.to_unix(from, unit)
+    from_time = System.convert_time_unit(from_time, unit, :seconds)
+    to_time = Backpack.Moment.to_unix(to, unit)
+    to_time = System.convert_time_unit(to_time, unit, :seconds)
+    [from_time, to_time] = if from_time > to_time do: [to_time, from_time], else: [from_time, to_time]
+    distance_in_minutes = round((to_time - from_time) / 60)
+    distance_in_seconds = round(to_time - from_time)
 
     if distance_in_minutes <= 1 do
       if include_seconds do
@@ -62,15 +61,15 @@ defmodule Backpack.Moment.Presenter do
   defp distance_in_minutes_to_words(minutes) when minutes < 90,
     do: "about an hour"
   defp distance_in_minutes_to_words(minutes) when minutes < 1440,
-    do: "about #{div(minutes, 60)} hours"
+    do: "about #{round(minutes / 60)} hours"
   defp distance_in_minutes_to_words(minutes) when minutes < 2520,
     do: "a day"
   defp distance_in_minutes_to_words(minutes) when minutes < 43200,
-    do: "#{div(minutes, 1440)} days"
+    do: "#{round(minutes / 1440)} days"
   defp distance_in_minutes_to_words(minutes) when minutes < 86400,
     do: "about a month"
   defp distance_in_minutes_to_words(minutes) when minutes < 525600,
-    do: "#{div(minutes, 43200)} months"
+    do: "#{round(minutes / 43200)} months"
   defp distance_in_minutes_to_words(minutes) when minutes < 525600 + @minutes_in_quarter_year,
     do: "about a year"
   defp distance_in_minutes_to_words(minutes) when minutes < 525600 + @minutes_in_three_quarters_year,
